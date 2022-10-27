@@ -182,35 +182,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-jI-yq7">
-                                <rect key="frame" x="293" y="489" width="50" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="link"/>
-                                <connections>
-                                    <segue destination="kG0-bw-WrG" kind="show" id="xLi-Xm-Xtu"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wU8-TM-a7g"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Oxc-EF-Rr5" firstAttribute="centerX" secondItem="IEv-zZ-mdo" secondAttribute="centerX" id="3pm-oX-efO"/>
                             <constraint firstItem="wU8-TM-a7g" firstAttribute="bottom" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="324" id="7dB-X9-bOK"/>
-                            <constraint firstItem="gwt-jI-yq7" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="3" id="8kQ-mD-jsI"/>
                             <constraint firstItem="ElN-xh-C8Z" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="10" id="QVt-hS-UGI"/>
                             <constraint firstItem="wU8-TM-a7g" firstAttribute="trailing" secondItem="Ezc-LM-Wl4" secondAttribute="trailing" constant="47" id="TAo-PM-zvH"/>
                             <constraint firstItem="Ezc-LM-Wl4" firstAttribute="top" secondItem="wU8-TM-a7g" secondAttribute="top" constant="33" id="UWT-kJ-3uF"/>
                             <constraint firstItem="ElN-xh-C8Z" firstAttribute="leading" secondItem="wU8-TM-a7g" secondAttribute="leading" constant="47" id="XrA-HW-Cl4"/>
-                            <constraint firstItem="gwt-jI-yq7" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="3" id="cyZ-wO-agg"/>
                             <constraint firstItem="Ezc-LM-Wl4" firstAttribute="leading" secondItem="wU8-TM-a7g" secondAttribute="leading" constant="47" id="fyf-cV-ovV"/>
-                            <constraint firstItem="HHC-sW-2vf" firstAttribute="top" secondItem="gwt-jI-yq7" secondAttribute="bottom" constant="41" id="jZH-z9-0MD"/>
                             <constraint firstItem="HHC-sW-2vf" firstAttribute="top" secondItem="Oxc-EF-Rr5" secondAttribute="bottom" constant="8" id="nSy-2s-X5Y"/>
                             <constraint firstItem="Oxc-EF-Rr5" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="36" id="pFy-uc-6c5"/>
-                            <constraint firstItem="wU8-TM-a7g" firstAttribute="trailing" secondItem="gwt-jI-yq7" secondAttribute="trailing" constant="47" id="xJu-2e-xGo"/>
                             <constraint firstItem="HHC-sW-2vf" firstAttribute="centerX" secondItem="IEv-zZ-mdo" secondAttribute="centerX" id="xbd-Zy-ijU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="llE-Qg-ufg"/>
+                    <navigationItem key="navigationItem" id="llE-Qg-ufg">
+                        <barButtonItem key="rightBarButtonItem" image="link.circle.fill" catalog="system" id="K7h-og-3gx">
+                            <connections>
+                                <segue destination="kG0-bw-WrG" kind="show" id="PGd-BW-Xd6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="movieActor" destination="foC-gE-FQK" id="HDL-5j-3Us"/>
                         <outlet property="movieDirector" destination="MA5-d0-q3j" id="sBT-ct-Muj"/>
@@ -271,7 +265,7 @@
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RT5-ue-81t">
                                 <rect key="frame" x="0.0" y="91" width="390" height="719"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -316,6 +310,7 @@
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="link.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
