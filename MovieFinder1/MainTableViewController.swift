@@ -9,11 +9,13 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
+    @IBOutlet weak var prevBtn: UIBarButtonItem!
+    @IBOutlet weak var nextBtn: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     var movies:[Movie] = []
-    var page = 1
+    var start = 1
     
-    let urlStirng = "https://openapi.naver.com/v1/search/movie.json?query=avengers&page=1"
+    let urlStirng = "https://openapi.naver.com/v1/search/movie.json?query=avengers&start=1"
   
     
     let clientID = "oLq9DBE3C1EBrxa3e7n0"
@@ -24,7 +26,7 @@ class MainTableViewController: UITableViewController {
         
         tableView.rowHeight = 180
         
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -34,14 +36,14 @@ class MainTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    func search(with query:String?, page:Int){
+    func search(with query:String?, start:Int){
         guard let query = query else {return}
-        let str = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&page=\(page)"
+        let str = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&start=\(start)"
         
         //한글검색
         if let strURL = str.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: strURL){
             var request = URLRequest(url: url)
-            request.addValue(clientSecret, forHTTPHeaderField: "X-Naver-Client-Id")
+            request.addValue(clientID, forHTTPHeaderField: "X-Naver-Client-Id")
             request.addValue(clientSecret, forHTTPHeaderField: "X-Naver-Client-Secret")
             let session = URLSession.shared
             
@@ -64,6 +66,17 @@ class MainTableViewController: UITableViewController {
             }
             task.resume()
         }
+        prevBtn.isEnabled = start > 1
+    }
+    
+    
+    @IBAction func actNext(_ sender: Any) {
+        start += 1
+        search(with: searchBar.text, start: start)
+    }
+    @IBAction func actPrev(_ sender: Any) {
+        start -= 1
+        search(with: searchBar.text, start: start)
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -97,20 +110,26 @@ class MainTableViewController: UITableViewController {
         }
         
         let lblTitle = cell.viewWithTag(2) as? UILabel
-        lblTitle?.text = movie.title
+       
+        var str1 = movie.title.replacingOccurrences(of: "<b>", with: "")
+        str1 = str1.replacingOccurrences(of: "</b>", with: "")
+        lblTitle?.text = str1
+       
         
         let lblSubtitle = cell.viewWithTag(3) as? UILabel
-        lblSubtitle?.text = movie.subtitle
+        var str2 = movie.subtitle.replacingOccurrences(of: "<b>", with: "")
+        str2 = str2.replacingOccurrences(of: "</b>", with: "")
+        lblSubtitle?.text = str2
         
-        let lblPubDate = cell.viewWithTag(3) as? UILabel
+        let lblPubDate = cell.viewWithTag(4) as? UILabel
         lblPubDate?.text = movie.pubDate
         
-        let lblActor = cell.viewWithTag(4) as? UILabel
-        lblActor?.text = movie.actor
+        let lblDirector = cell.viewWithTag(5) as? UILabel
+        lblDirector?.text = movie.director
         
-        let lblUserRating = cell.viewWithTag(5) as? UILabel
+        let lblUserRating = cell.viewWithTag(6) as? UILabel
         lblUserRating?.text = movie.userRating
-
+       
         return cell
     }
  
@@ -150,21 +169,22 @@ class MainTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        guard let indexPath = tableView.indexPathForSelectedRow else {return}
+        let movie = self.movies[indexPath.row]
+        let vc = segue.destination as? DetailViewController
+        vc?.movie = movie
     }
-    */
+
 
 }
 extension MainTableViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        page = 1
-        search(with: searchBar.text, page: page)
+        start = 1
+        search(with: searchBar.text, start: start)
         searchBar.resignFirstResponder()
     }
 }

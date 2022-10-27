@@ -7,13 +7,6 @@
 
 import Foundation
 
-struct Meta: Codable {
-    let lastBuildDate: String
-    let total: Int
-    let start: Int
-    let display: Int
-}
-
 struct Movie: Codable {
     let title: String
     let link: String
@@ -26,6 +19,9 @@ struct Movie: Codable {
 }
 
 struct ResultData: Codable {
-    let meta: Meta
+    let lastBuildDate: String
+    let total: Int
+    let start: Int
+    let display: Int
     let items: [Movie]
 }

@@ -6,13 +6,26 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController {
 
+    var movieURL: Movie?
+    @IBOutlet weak var webView: WKWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        guard let movieURL = self.movieURL, let url = URL(string: movieURL.link) else {return}
+        let request = URLRequest(url: url)
+        webView.load(request)
+        
+        print("request: \(request)")
+        
+        //        if let movieURL = URL(string: movie?.link ?? "https://www.naver.com"){
+//            let request = URLRequest(url: movieURL)
+//            webView.load(request)
+        }
     }
     
 
@@ -26,4 +39,4 @@ class WebViewController: UIViewController {
     }
     */
 
-}
+
