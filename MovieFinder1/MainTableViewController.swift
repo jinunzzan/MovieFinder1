@@ -12,6 +12,12 @@ class MainTableViewController: UITableViewController {
     @IBOutlet weak var prevBtn: UIBarButtonItem!
     @IBOutlet weak var nextBtn: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    // 검색 나라 설정
+    let pickerList = ["프랑스", "영국", "홍콩", "일본", "한국", "미국", "기타"]
+    var pickerView = UIPickerView()
+    var typeValue = String()
+    
     var movies:[Movie] = []
     var start = 1
     
@@ -33,7 +39,21 @@ class MainTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
+    @IBAction func actPick(_ sender: Any) {
+        let alert = UIAlertController(title: "국가를 선택하세요", message: "\n\n\n\n\n\n", preferredStyle: .actionSheet)
+        alert.modalPresentationCapturesStatusBarAppearance = true
+        let pickerFrame = UIPickerView(frame: CGRect(x: -8, y: 20, width: self.view.frame.width, height: 140))
+        alert.view.addSubview(pickerFrame)
+        pickerFrame.delegate = self
+        pickerFrame.dataSource = self
+        
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: {(UIAlertAction) in print("\(self.typeValue)")
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // MARK: - Table view data source
 
     func search(with query:String?, start:Int){
@@ -187,4 +207,35 @@ extension MainTableViewController: UISearchBarDelegate{
         search(with: searchBar.text, start: start)
         searchBar.resignFirstResponder()
     }
+}
+
+extension MainTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.pickerList.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerList[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 0 {
+            typeValue = "FR"
+        } else if row == 1 {
+            typeValue = "GB"
+        }else if row == 2 {
+            typeValue = "HK"
+        }else if row == 3 {
+            typeValue = "JP"
+        }else if row == 4 {
+            typeValue = "KR"
+        }else if row == 5 {
+            typeValue = "US"
+        }else if row == 6 {
+            typeValue = "ETC"
+        }
+    }
+    
 }

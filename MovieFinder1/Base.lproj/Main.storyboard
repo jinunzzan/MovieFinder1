@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="영화를 검색하세요" id="jha-bf-EWi">
+                        <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="영화를 검색하세요" id="jha-bf-EWi">
                             <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go"/>
@@ -108,11 +108,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Movie Finder" id="onA-l8-bwT">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="nsa-ld-hw1">
-                            <connections>
-                                <action selector="actPrev:" destination="c6p-9o-Ce6" id="ZV6-Mu-wpX"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" id="3Ya-7L-APQ">
+                                <connections>
+                                    <action selector="actPick:" destination="c6p-9o-Ce6" id="Zro-iD-Rah"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="arrow.left" catalog="system" id="nsa-ld-hw1">
+                                <connections>
+                                    <action selector="actPrev:" destination="c6p-9o-Ce6" id="ZV6-Mu-wpX"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.right" catalog="system" id="4mZ-2H-9nL">
                             <connections>
                                 <action selector="actNext:" destination="c6p-9o-Ce6" id="pCE-nX-3Wg"/>
