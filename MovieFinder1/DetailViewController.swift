@@ -32,11 +32,20 @@ class DetailViewController: UIViewController {
         moviePubDate.text = "개봉일: \(movie?.pubDate ?? "")"
         movieDirector.text = "감독: \(movie?.director ?? "")"
         
-        // Do any additional setup after loading the view.
-    }
-    
-    @IBAction func actionLink(_ sender: UIButton) {
-       
+        if let imgURL = URL(string: movie?.image ?? ""){
+            let request = URLRequest(url: imgURL)
+            let session = URLSession.shared
+            session.dataTask(with: request){data, _, _ in
+                if let data = data{
+                    let img = UIImage(data: data)
+                    DispatchQueue.main.async {
+                        self.movieImageView.image = img
+                    }
+                }
+            }.resume()
+        }
+//        movieImageView.image = UIImage(named: movie?.image ?? "")
+        
     }
     
     
@@ -47,9 +56,6 @@ class DetailViewController: UIViewController {
         let movie = self.movie
         let vc = segue.destination as? WebViewController
         vc?.movieURL = movie
-//        let movieURL = self.movie?.link
-//        let vc = segue.destination as? WebViewController
-//        vc?.movieURL = movieURL
     }
    
 

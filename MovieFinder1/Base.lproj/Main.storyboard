@@ -149,16 +149,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-jI-yq7">
-                                <rect key="frame" x="281" y="124" width="50" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="link"/>
-                                <connections>
-                                    <segue destination="kG0-bw-WrG" kind="show" id="xLi-Xm-Xtu"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="영어제목" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-sW-2vf">
-                                <rect key="frame" x="47" y="565" width="296" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="영어제목" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHC-sW-2vf">
+                                <rect key="frame" x="165.66666666666666" y="565" width="59" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -177,9 +169,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElN-xh-C8Z">
-                                <rect key="frame" x="47" y="493" width="154" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ElN-xh-C8Z">
+                                <rect key="frame" x="47" y="496" width="41.333333333333343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -191,21 +182,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-jI-yq7">
+                                <rect key="frame" x="293" y="489" width="50" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="link"/>
+                                <connections>
+                                    <segue destination="kG0-bw-WrG" kind="show" id="xLi-Xm-Xtu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wU8-TM-a7g"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Oxc-EF-Rr5" firstAttribute="centerX" secondItem="IEv-zZ-mdo" secondAttribute="centerX" id="3pm-oX-efO"/>
                             <constraint firstItem="wU8-TM-a7g" firstAttribute="bottom" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="324" id="7dB-X9-bOK"/>
+                            <constraint firstItem="gwt-jI-yq7" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="3" id="8kQ-mD-jsI"/>
+                            <constraint firstItem="ElN-xh-C8Z" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="10" id="QVt-hS-UGI"/>
                             <constraint firstItem="wU8-TM-a7g" firstAttribute="trailing" secondItem="Ezc-LM-Wl4" secondAttribute="trailing" constant="47" id="TAo-PM-zvH"/>
                             <constraint firstItem="Ezc-LM-Wl4" firstAttribute="top" secondItem="wU8-TM-a7g" secondAttribute="top" constant="33" id="UWT-kJ-3uF"/>
-                            <constraint firstItem="gwt-jI-yq7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wU8-TM-a7g" secondAttribute="leading" id="fp3-RL-za3"/>
+                            <constraint firstItem="ElN-xh-C8Z" firstAttribute="leading" secondItem="wU8-TM-a7g" secondAttribute="leading" constant="47" id="XrA-HW-Cl4"/>
+                            <constraint firstItem="gwt-jI-yq7" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="3" id="cyZ-wO-agg"/>
                             <constraint firstItem="Ezc-LM-Wl4" firstAttribute="leading" secondItem="wU8-TM-a7g" secondAttribute="leading" constant="47" id="fyf-cV-ovV"/>
-                            <constraint firstItem="wU8-TM-a7g" firstAttribute="trailing" secondItem="gwt-jI-yq7" secondAttribute="trailing" constant="59" id="kM6-aj-fVA"/>
+                            <constraint firstItem="HHC-sW-2vf" firstAttribute="top" secondItem="gwt-jI-yq7" secondAttribute="bottom" constant="41" id="jZH-z9-0MD"/>
                             <constraint firstItem="HHC-sW-2vf" firstAttribute="top" secondItem="Oxc-EF-Rr5" secondAttribute="bottom" constant="8" id="nSy-2s-X5Y"/>
                             <constraint firstItem="Oxc-EF-Rr5" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="bottom" constant="36" id="pFy-uc-6c5"/>
+                            <constraint firstItem="wU8-TM-a7g" firstAttribute="trailing" secondItem="gwt-jI-yq7" secondAttribute="trailing" constant="47" id="xJu-2e-xGo"/>
                             <constraint firstItem="HHC-sW-2vf" firstAttribute="centerX" secondItem="IEv-zZ-mdo" secondAttribute="centerX" id="xbd-Zy-ijU"/>
-                            <constraint firstItem="gwt-jI-yq7" firstAttribute="top" secondItem="Ezc-LM-Wl4" secondAttribute="top" id="zDF-Mv-jrG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="llE-Qg-ufg"/>
