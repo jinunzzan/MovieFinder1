@@ -33,7 +33,11 @@ class MainTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         
         
+        let firstView = "https://openapi.naver.com/v1/search/movie.json?&query=a&start=1"
+        
+        search(with: firstView, start: start)
         
         tableView.rowHeight = 180
         
@@ -62,6 +66,8 @@ class MainTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     func search(with query:String?, start:Int){
+        
+        
         print("urlString: \(query)")
        
         guard let query = query else {return}
@@ -121,7 +127,7 @@ class MainTableViewController: UITableViewController {
         let footerView = UIView()
         
         footerView.backgroundColor = .systemBlue
-        footerView.layer.cornerRadius = 20
+        
         
         backButton = UIButton(frame: CGRect(x: 20, y: 5, width: 40, height: 40))
         backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
@@ -141,6 +147,7 @@ class MainTableViewController: UITableViewController {
     }
     @objc func backButtonClick(_sender: UIButton){
         start -= 1
+        
         search(with: searchBar.text, start: start)
     }
     @objc func nextButtonClick(_sender: UIButton){

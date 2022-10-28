@@ -25,9 +25,20 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movieTitle.text = movie?.title
+        var str1 = movie?.title
+        str1 = str1?.replacingOccurrences(of: "<b>", with: "")
+        str1 = str1?.replacingOccurrences(of: "</b>", with: "")
+        movieTitle.text = str1
+        
+        
+        var str2 = movie?.subtitle
+        str2 = str2?.replacingOccurrences(of: "<b>", with: "")
+        str2 = str2?.replacingOccurrences(of: "</b>", with: "")
         movieSubTitle.text = movie?.subtitle
         movieUserRating.text = "평점: \(movie?.userRating ?? "")"
+        
+        
+        
         movieActor.text = "출연: \(movie?.actor ?? "")"
         moviePubDate.text = "개봉일: \(movie?.pubDate ?? "")"
         movieDirector.text = "감독: \(movie?.director ?? "")"
