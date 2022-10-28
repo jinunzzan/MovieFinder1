@@ -9,26 +9,31 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
 
-    @IBOutlet weak var prevBtn: UIBarButtonItem!
-    @IBOutlet weak var nextBtn: UIBarButtonItem!
+
     @IBOutlet weak var searchBar: UISearchBar!
     
+    var backButton = UIButton()
+    var nextButton = UIButton()
+    
     // 검색 나라 설정
-    let pickerList = ["프랑스", "영국", "홍콩", "일본", "한국", "미국", "기타"]
+  
     var pickerView = UIPickerView()
     var typeValue = String()
     
     var movies:[Movie] = []
     var start = 1
     
-    let urlStirng = "https://openapi.naver.com/v1/search/movie.json?query=avengers&start=1"
-  
+    var urlStirng = "https://openapi.naver.com/v1/search/movie.json?"
+    var genre: String?
+    var country: String?
+    
     
     let clientID = "oLq9DBE3C1EBrxa3e7n0"
     let clientSecret = "6qZGV4cV8e"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         tableView.rowHeight = 180
         
@@ -39,7 +44,7 @@ class MainTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
+    /* 버튼 클릭시 액션시트
     @IBAction func actPick(_ sender: Any) {
         let alert = UIAlertController(title: "국가를 선택하세요", message: "\n\n\n\n\n\n", preferredStyle: .actionSheet)
         alert.modalPresentationCapturesStatusBarAppearance = true
@@ -53,15 +58,24 @@ class MainTableViewController: UITableViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
+    */
     // MARK: - Table view data source
 
     func search(with query:String?, start:Int){
+        print("urlString: \(query)")
+       
         guard let query = query else {return}
-        let str = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&start=\(start)"
+        var localStirng = urlStirng.appending("query=\(query)&start=\(start)")
+        
+        if let genre = genre {
+            localStirng = localStirng.appending("&genre=\(genre)")
+        }
+        if let country = country {
+            localStirng = localStirng.appending("&country=\(country)")
+        }
         
         //한글검색
-        if let strURL = str.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: strURL){
+        if let strURL = localStirng.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: strURL){
             var request = URLRequest(url: url)
             request.addValue(clientID, forHTTPHeaderField: "X-Naver-Client-Id")
             request.addValue(clientSecret, forHTTPHeaderField: "X-Naver-Client-Secret")
@@ -84,20 +98,15 @@ class MainTableViewController: UITableViewController {
                     }
                 }
             }
+            print("strURL: \(strURL)")
             task.resume()
+            genre = nil
+            country = nil
         }
-        prevBtn.isEnabled = start > 1
+      
+        backButton.isEnabled = start > 1
     }
-    
-    
-    @IBAction func actNext(_ sender: Any) {
-        start += 1
-        search(with: searchBar.text, start: start)
-    }
-    @IBAction func actPrev(_ sender: Any) {
-        start -= 1
-        search(with: searchBar.text, start: start)
-    }
+      
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -108,7 +117,36 @@ class MainTableViewController: UITableViewController {
         return movies.count
     }
 
-
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        
+        footerView.backgroundColor = .systemBlue
+        footerView.layer.cornerRadius = 20
+        
+        backButton = UIButton(frame: CGRect(x: 20, y: 5, width: 40, height: 40))
+        backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
+        backButton.setPreferredSymbolConfiguration(.init(pointSize: 20), forImageIn: .normal)
+        backButton.tintColor = .white
+        backButton.addTarget(self, action: #selector(backButtonClick), for: .touchUpInside)
+        
+        nextButton = UIButton(frame: CGRect(x: 340, y: 5, width: 40, height: 40))
+        nextButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
+        nextButton.setPreferredSymbolConfiguration(.init(pointSize: 20), forImageIn: .normal)
+        nextButton.tintColor = .white
+        nextButton.addTarget(self, action: #selector(nextButtonClick), for: .touchUpInside)
+        
+        footerView.addSubview(backButton)
+        footerView.addSubview(nextButton)
+        return footerView
+    }
+    @objc func backButtonClick(_sender: UIButton){
+        start -= 1
+        search(with: searchBar.text, start: start)
+    }
+    @objc func nextButtonClick(_sender: UIButton){
+        start += 1
+        search(with: searchBar.text, start: start)
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let movie = movies[indexPath.row]
         
@@ -153,7 +191,6 @@ class MainTableViewController: UITableViewController {
         return cell
     }
  
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -193,10 +230,18 @@ class MainTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow else {return}
-        let movie = self.movies[indexPath.row]
-        let vc = segue.destination as? DetailViewController
-        vc?.movie = movie
+        //DetailView 로 데이터 전송
+        if segue.identifier == "detailsegue"{
+            guard let indexPath = tableView.indexPathForSelectedRow else {return}
+            let movie = self.movies[indexPath.row]
+            let vc = segue.destination as? DetailViewController
+            vc?.movie = movie
+        } else {
+            //modal로 데이터 이동
+            guard let modalVc = self.storyboard?.instantiateViewController(withIdentifier: "modal") as? PickerViewController else {return}
+            modalVc.mainVC = self
+            present(modalVc, animated: true)
+        }
     }
 
 
@@ -209,33 +254,3 @@ extension MainTableViewController: UISearchBarDelegate{
     }
 }
 
-extension MainTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.pickerList.count
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerList[row]
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if row == 0 {
-            typeValue = "FR"
-        } else if row == 1 {
-            typeValue = "GB"
-        }else if row == 2 {
-            typeValue = "HK"
-        }else if row == 3 {
-            typeValue = "JP"
-        }else if row == 4 {
-            typeValue = "KR"
-        }else if row == 5 {
-            typeValue = "US"
-        }else if row == 6 {
-            typeValue = "ETC"
-        }
-    }
-    
-}

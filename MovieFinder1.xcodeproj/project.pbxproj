@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		595D58EE290B8CF30000A228 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595D58ED290B8CF30000A228 /* PickerViewController.swift */; };
 		599D967229093617002A3D86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599D967129093617002A3D86 /* AppDelegate.swift */; };
 		599D967429093617002A3D86 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599D967329093617002A3D86 /* SceneDelegate.swift */; };
 		599D967929093617002A3D86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 599D967729093617002A3D86 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		595D58ED290B8CF30000A228 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		599D966E29093617002A3D86 /* MovieFinder1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieFinder1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		599D967129093617002A3D86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		599D967329093617002A3D86 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				599D967329093617002A3D86 /* SceneDelegate.swift */,
 				599D968B29093C80002A3D86 /* Movie.swift */,
 				599D967729093617002A3D86 /* Main.storyboard */,
+				595D58ED290B8CF30000A228 /* PickerViewController.swift */,
 				599D968D29093CA1002A3D86 /* WebViewController.swift */,
 				599D9689290936DC002A3D86 /* DetailViewController.swift */,
 				599D968729093677002A3D86 /* MainTableViewController.swift */,
@@ -152,6 +155,7 @@
 				599D968829093677002A3D86 /* MainTableViewController.swift in Sources */,
 				599D967429093617002A3D86 /* SceneDelegate.swift in Sources */,
 				599D968A290936DC002A3D86 /* DetailViewController.swift in Sources */,
+				595D58EE290B8CF30000A228 /* PickerViewController.swift in Sources */,
 				599D968C29093C80002A3D86 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

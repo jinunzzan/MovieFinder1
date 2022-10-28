@@ -12,7 +12,7 @@
         <scene sceneID="9vs-al-rhh">
             <objects>
                 <tableViewController id="c6p-9o-Ce6" customClass="MainTableViewController" customModule="MovieFinder1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fOa-du-7mk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="50" estimatedSectionFooterHeight="-1" id="fOa-du-7mk">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -98,7 +98,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="YHd-5N-NhU" kind="show" id="pY1-HA-8vm"/>
+                                    <segue destination="YHd-5N-NhU" kind="show" identifier="detailsegue" id="pY1-HA-8vm"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -108,27 +108,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Movie Finder" id="onA-l8-bwT">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Item" id="3Ya-7L-APQ">
-                                <connections>
-                                    <action selector="actPick:" destination="c6p-9o-Ce6" id="Zro-iD-Rah"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Item" image="arrow.left" catalog="system" id="nsa-ld-hw1">
-                                <connections>
-                                    <action selector="actPrev:" destination="c6p-9o-Ce6" id="ZV6-Mu-wpX"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.right" catalog="system" id="4mZ-2H-9nL">
+                        <barButtonItem key="leftBarButtonItem" image="network" catalog="system" id="3Ya-7L-APQ">
                             <connections>
-                                <action selector="actNext:" destination="c6p-9o-Ce6" id="pCE-nX-3Wg"/>
+                                <segue destination="ABX-Zc-fXz" kind="presentation" identifier="modalsegue" id="78A-K1-3F5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="nextBtn" destination="4mZ-2H-9nL" id="65Y-8o-k0c"/>
-                        <outlet property="prevBtn" destination="nsa-ld-hw1" id="ZSD-kh-mii"/>
                         <outlet property="searchBar" destination="jha-bf-EWi" id="uWj-TH-5YL"/>
                     </connections>
                 </tableViewController>
@@ -306,18 +292,53 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="c6p-9o-Ce6" kind="relationship" relationship="rootViewController" id="CCa-oa-4Ml"/>
+                        <segue destination="c6p-9o-Ce6" kind="relationship" relationship="rootViewController" id="pxO-p7-oQM"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocp-B1-Cen" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-269" y="-5"/>
+            <point key="canvasLocation" x="-552" y="-9"/>
+        </scene>
+        <!--Picker View Controller-->
+        <scene sceneID="n7x-jV-yJI">
+            <objects>
+                <viewController storyboardIdentifier="modal" id="ABX-Zc-fXz" customClass="PickerViewController" customModule="MovieFinder1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9cn-Pw-Q2v">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fJK-a4-KKE">
+                                <rect key="frame" x="35" y="286" width="320" height="216"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUE-Gh-jOa">
+                                <rect key="frame" x="158" y="551" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="actSearch:" destination="ABX-Zc-fXz" eventType="touchUpInside" id="f4z-vR-Si2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3jD-EY-evd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fJK-a4-KKE" firstAttribute="centerX" secondItem="9cn-Pw-Q2v" secondAttribute="centerX" id="Vn6-op-ALB"/>
+                            <constraint firstItem="fJK-a4-KKE" firstAttribute="centerY" secondItem="9cn-Pw-Q2v" secondAttribute="centerY" id="g4o-j4-PCz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pickerView" destination="fJK-a4-KKE" id="uHR-7L-2i8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FoF-EA-4JR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="640" y="723.69668246445497"/>
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="128" height="95"/>
-        <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="link.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="network" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
