@@ -123,27 +123,30 @@ class MainTableViewController: UITableViewController {
         return movies.count
     }
 
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let footerView = UIView()
         
-        footerView.backgroundColor = .systemBlue
+        footerView.backgroundColor = .white
         
         
         backButton = UIButton(frame: CGRect(x: 20, y: 5, width: 40, height: 40))
         backButton.setImage(UIImage(systemName: "arrow.left"), for: .normal)
         backButton.setPreferredSymbolConfiguration(.init(pointSize: 20), forImageIn: .normal)
-        backButton.tintColor = .white
+        backButton.tintColor = .systemBlue
         backButton.addTarget(self, action: #selector(backButtonClick), for: .touchUpInside)
         
         nextButton = UIButton(frame: CGRect(x: 340, y: 5, width: 40, height: 40))
         nextButton.setImage(UIImage(systemName: "arrow.right"), for: .normal)
         nextButton.setPreferredSymbolConfiguration(.init(pointSize: 20), forImageIn: .normal)
-        nextButton.tintColor = .white
+        nextButton.tintColor = .systemBlue
         nextButton.addTarget(self, action: #selector(nextButtonClick), for: .touchUpInside)
         
         footerView.addSubview(backButton)
         footerView.addSubview(nextButton)
         return footerView
+    }
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
     @objc func backButtonClick(_sender: UIButton){
         start -= 1

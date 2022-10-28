@@ -34,7 +34,7 @@ class DetailViewController: UIViewController {
         var str2 = movie?.subtitle
         str2 = str2?.replacingOccurrences(of: "<b>", with: "")
         str2 = str2?.replacingOccurrences(of: "</b>", with: "")
-        movieSubTitle.text = movie?.subtitle
+        movieSubTitle.text = str2
         movieUserRating.text = "평점: \(movie?.userRating ?? "")"
         
         
