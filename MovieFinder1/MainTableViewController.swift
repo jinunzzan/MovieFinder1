@@ -152,6 +152,7 @@ class MainTableViewController: UITableViewController {
         start -= 1
         
         search(with: searchBar.text, start: start)
+        print("backbuttonClicked")
     }
     @objc func nextButtonClick(_sender: UIButton){
         start += 1
