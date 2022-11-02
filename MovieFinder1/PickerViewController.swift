@@ -36,11 +36,11 @@ class PickerViewController: UIViewController {
             let country = countryCode[index0]
             mainVC?.country = country
         }
-        let index1 = pickerView.selectedRow(inComponent: 1)
-        if index1 > 0 {
-            let genre = pickerListGenre[index1]
-            mainVC?.genre = genre
-        }
+//        let index1 = pickerView.selectedRow(inComponent: 1)
+//        if index1 > 0 {
+//            let genre = pickerListGenre[index1]
+//            mainVC?.genre = genre
+//        }
             dismiss(animated: true)
         }
     }
@@ -57,23 +57,25 @@ class PickerViewController: UIViewController {
 
 extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return pickerListCountry.count
-        } else {
-            return pickerListGenre.count
-        }
+//        if component == 0 {
+//            return pickerListCountry.count
+//        } else {
+//            return pickerListGenre.count
+//        }
+        return pickerListCountry.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if component == 0 {
-           
-            return pickerListCountry[row]
-           
-        } else {
-            return pickerListGenre[row]
-        }
+//        if component == 0 {
+//
+//            return pickerListCountry[row]
+//
+//        } else {
+//            return pickerListGenre[row]
+//        }
+        return pickerListCountry[row]
     }
 }
