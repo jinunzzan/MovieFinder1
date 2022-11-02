@@ -123,7 +123,7 @@ class MainTableViewController: UITableViewController {
         return movies.count
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
         
         footerView.backgroundColor = .white
@@ -150,12 +150,14 @@ class MainTableViewController: UITableViewController {
     }
     @objc func backButtonClick(_sender: UIButton){
         start -= 1
-        
         search(with: searchBar.text, start: start)
+        
+        
         print("backbuttonClicked")
     }
     @objc func nextButtonClick(_sender: UIButton){
         start += 1
+        
         search(with: searchBar.text, start: start)
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
